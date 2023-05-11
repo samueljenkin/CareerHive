@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, session
 from models.job import all_jobs, create_job, get_job, update_job, delete_job, save_job
+from services.session_info import current_user
 
 def index():
     jobs = all_jobs()
-    return render_template('jobs/index.html', jobs=jobs)
+    return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
 
 def new():
     return render_template('jobs/new.html')

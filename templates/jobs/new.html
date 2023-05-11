@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Add job listing</h1>
-    <form action="/jobs" method="POST">
-        <label for="">Job Title:</label>
-        <input type="text" name="title">
+<h1>Add job listing</h1>
+<form action="/jobs" method="POST">
+    <label for="">Job Title:</label>
+    <input type="text" name="title">
 
-        <label for="">Salary:</label>
-        <input type="text" name="salary">
+    <label for="">Salary:</label>
+    <input type="text" name="salary">
 
-        <label for="">Job Type:</label>
-        <input type="text" name="type">
+    <label for="">Job Type:</label>
+    <input type="text" name="type">
 
-        <label for="">Company:</label>
-        <input type="text" name="company">
+    <label for="">Company:</label>
+    <input type="text" name="company">
 
-        <label for="">Location:</label>
-        <input type="text" name="location">
+    <label for="">Location:</label>
+    <input type="text" name="location">
 
-        <label for="">URL:</label>
-        <input type="text" name="url">
+    <label for="">URL:</label>
+    <input type="text" name="url">
 
-        <label for="">Description:</label>
-        <input type="text" name="description">
+    <label for="">Description:</label>
+    <input type="text" name="description">
 
-        <button>Add job listing</button>
-    </form>
+    <button>Add job listing</button>
+</form>
 {% endblock %}

@@ -17,4 +17,4 @@ def delete_job(id):
     sql("DELETE FROM jobs WHERE id=%s RETURNING *", [id])
 
 def save_job(job_id, user_id):
-    sql("INSERT INTO likes(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
+    sql("INSERT INTO saved(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])

@@ -38,7 +38,7 @@ CREATE TABLE users(
     password_digest TEXT
 );
 
-CREATE TABLE likes(
+CREATE TABLE saved(
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
     job_id INTEGER
