@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <header>
+        <h1>CareerHive</h1>
+
+        <!-- add in a search bar -->
+
+        <section class="controls">
+            <form action="/sessions/delete" method="POST">
+                <button>Log out</button>
+            </form>
+
+            <form action="/jobs/new">
+                <button>Add job</button>
+            </form>
+        </section>
+    </header>
+
+    <main class="jobs">
+        {% for job in jobs %}
+            <section class="job">
+                <h2>{{ job['title'] }}</h2>
+                <h3>{{ job['salary'] }}</h3>
+                <p>{{ job['type'] }}</p>
+                <p>{{ job['company'] }}</p>
+                <p>{{ job['location'] }}</p>
+                <a href="{{ job['url'] }}">Go to job page</a>
+                <p>{{ job['description'] }}</p>
+                <p>{{ job['date_posted'] }}</p>
+            </section>
+
+            <section class="controls">
+                <form action="/jobs/{{ job['id'] }}/edit">
+                    <button>Edit</button>
+                </form>
+
+                <form action="/jobs/{{ job['id'] }}/delete">
+                    <button>Delete</button>
+                </form>
+
+                <form action="/jobs/{{ job['id'] }}/likes">
+                    <button>Like</button>
+                </form>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

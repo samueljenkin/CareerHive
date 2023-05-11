@@ -5,17 +5,17 @@ CREATE DATABASE careerhive_app;
 -- Run on local and web service
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
-    job_title TEXT,
+    title TEXT,
     salary REAL,
-    job_type TEXT,
+    type TEXT,
     company TEXT,
     location TEXT,
-    job_url TEXT,
-    job_description TEXT,
+    url TEXT,
+    description TEXT,
     date_posted TIMESTAMP
 );
 
-INSERT INTO jobs(job_title, salary, job_type, company, location, job_url, job_description, date_posted)
+INSERT INTO jobs(title, salary, type, company, location, url, description, date_posted)
 VALUES
     ('Psychiatrist', 72000,'Full-time', 'Charterhouse Recruitment (Australia)', 'Gold Coast City
     ', 'https://www.jobleads.com/registration/job?campaignId=62&jobId=e5190deb2f742dc6a3516cb078043d547&jmId=999&utm_source=jooble%7Cr-jb%7Cc-au&utm_medium=job-external&utm_campaign=jobs&utm_content=jobmarket-id%3D999%7Clandingpage-id%3D158%7Cjob-id%3D5190deb2f742dc6a3516cb078043d547%7Cjob-workarea%3D05-03%7Cjob-hierarchy%3D04%7Cjob-salary-benchmark%3D04%7Cjob-industry%3D46%7Cjob-location%3Dgold-coast-city%7Cjobtitle%3Dpsychiatrist&jobjmlp=158&ccuid=46062991141', 'Charterhouse Medical are currently looking for a Locum Consultant Psychiatrist for an upcoming urgent locum placement as follows.', CURRENT_TIMESTAMP),
