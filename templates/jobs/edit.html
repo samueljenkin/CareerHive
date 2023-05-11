@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Edit job listing</h1>
+    <form action="/jobs/{{ job['id'] }}" method="POST">
+        <label for="">Job Title:</label>
+        <input type="text" name="title" value="{{ job['title'] }}">
+
+        <label for="">Salary:</label>
+        <input type="text" name="salary" value="{{ job['salary'] }}">
+
+        <label for="">Job Type:</label>
+        <input type="text" name="type" value="{{ job['type'] }}">
+
+        <label for="">Company:</label>
+        <input type="text" name="company" value="{{ job['company'] }}">
+
+        <label for="">Location:</label>
+        <input type="text" name="location" value="{{ job['location'] }}">
+
+        <label for="">URL:</label>
+        <input type="text" name="url" value="{{ job['url'] }}">
+
+        <label for="">Description:</label>
+        <input type="text" name="description" value="{{ job['description'] }}">
+
+        <button>Edit job listing</button>
+    </form>
+{% endblock %}

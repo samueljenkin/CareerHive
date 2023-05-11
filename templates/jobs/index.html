@@ -35,12 +35,12 @@
                     <button>Edit</button>
                 </form>
 
-                <form action="/jobs/{{ job['id'] }}/delete">
+                <form action="/jobs/{{ job['id'] }}/delete" method="POST">
                     <button>Delete</button>
                 </form>
 
-                <form action="/jobs/{{ job['id'] }}/likes">
-                    <button>Like</button>
+                <form action="/jobs/{{ job['id'] }}/save" method="POST">
+                    <button>Save</button>
                 </form>
             </section>
         {% endfor %}
