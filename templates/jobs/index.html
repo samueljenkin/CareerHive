@@ -7,7 +7,18 @@
     <h3>Welcome to CareerHive {{ current_user['first_name'] }}</h3>
 
     <section class="controls">
-        <!-- add in a search bar -->
+        <form action="/jobs/search">
+            <label for="search">Search by:</label>
+            <select name="key" id="search">
+                <option value="title">Job Title</option>
+                <option value="name">Company</option>
+                <option value="fulltime">Fulltime</option>
+                <option value="city">City</option>
+                <option value="country">Country</option>
+            </select>
+            <input type="text" name="value">
+            <button>Search</button>
+        </form>
 
         <form action="/sessions/delete" method="POST">
             <button>Log out</button>
@@ -86,5 +97,23 @@
         <button>Log in</button>
     </form>
 </section>
+
+{% for job_data in api_jobs %}
+<section class="job">
+    <img src="{{ job_data['logo'] }}" alt="">
+    <h2>{{ job_data['title'] }}</h2>
+    <h3>${{ job_data['salary'] }}</h3>
+    <p>Company: {{ job_data['name'] }}</p>
+    {% if job_data['fulltime'] == 'true' %}
+    <p>Employment type: Full-time</p>
+    {% else %}
+    <p>Employment type: Part-time/ Caual</p>
+    {% endif %}
+    <p>Location: {{ job_data['city'] }} ({{ job_data['zipcode'] }}), {{ job_data['country'] }}</p>
+    <p>Contact: {{ job_data['author'] }}</p>
+    <p>Job description: {{ job_data['content'] }}</p>
+    <p>Date posted: {{ job_data['date'] }}</p>
+</section>
+{% endfor %}
 {% endif %}
 {% endblock %}

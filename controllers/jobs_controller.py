@@ -3,15 +3,26 @@ from models.job import all_jobs, create_job, get_job, update_job, delete_job, sa
 from services.session_info import current_user
 import requests
 
-def get_jobs_from_api():
-    api_url = f'https://apis.camillerakoto.fr/fakejobs/jobs'
+def get_all_jobs_from_api():
+    api_url = 'https://apis.camillerakoto.fr/fakejobs/jobs'
     response = requests.get(api_url).json()
     return response
 
+def get_filtered_jobs_from_api(key, value):
+    api_url = f'https://apis.camillerakoto.fr/fakejobs/jobs?{key}={value}'
+    response = requests.get(api_url).json()
+    return response
+    
 def index():
     jobs = all_jobs()
-    api_jobs = get_jobs_from_api()
-    return render_template('jobs/index.html', jobs=jobs, api_jobs=api_jobs, current_user=current_user())
+    api_jobs = get_all_jobs_from_api()
+    key = request.form.get('key')
+    value = request.form.get('value')
+    filtered_api_jobs = get_filtered_jobs_from_api(key, value)
+    if value == None:
+        return render_template('jobs/index.html', jobs=jobs, api_jobs=api_jobs, current_user=current_user())
+    else:
+        return render_template('jobs/index.html', jobs=jobs, api_jobs=filtered_api_jobs, current_user=current_user())
 
 def new():
     return render_template('jobs/new.html')
