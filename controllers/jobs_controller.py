@@ -1,19 +1,7 @@
 from flask import render_template, request, redirect, session
-from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, get_filtered_jobs
+from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, get_filtered_jobs
 from services.session_info import current_user
 import requests
-
-# def get_all_jobs_from_api():
-#     api_url = 'https://apis.camillerakoto.fr/fakejobs/jobs'
-#     response = requests.get(api_url).json()
-#     return response
-
-def get_filtered_jobs_from_api(key, value):
-    print(f'key: {key}, value: {value}')
-    api_url = f'https://apis.camillerakoto.fr/fakejobs/jobs?{key}={value}'
-    response = requests.get(api_url).json()
-    print(f'response: {response}')
-    return response
     
 def index():
     jobs = all_jobs()
@@ -63,6 +51,14 @@ def delete(id):
 
 def save(id):
     save_job(id, session['user_id'])
+    return redirect('/')
+
+def apply(id):
+    apply_to_job(id, session['user_id'])
+    return redirect('/')
+
+def report(id):
+    report_job(id, session['user_id'])
     return redirect('/')
 
 def search():

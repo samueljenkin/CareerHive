@@ -31,3 +31,15 @@ CREATE TABLE saved(
     user_id INTEGER,
     job_id INTEGER
 );
+
+CREATE TABLE applied(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    job_id INTEGER
+);
+
+CREATE TABLE reported(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    job_id INTEGER
+);

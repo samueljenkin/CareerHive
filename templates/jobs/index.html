@@ -60,6 +60,14 @@
         <form action="/jobs/{{ job['id'] }}/save" method="POST">
             <button>Save</button>
         </form>
+
+        <form action="/jobs/{{ job['id'] }}/apply" method="POST">
+            <button>Apply</button>
+        </form>
+
+        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+            <button>Report</button>
+        </form>
     </section>
     {% endfor %}
 </main>
