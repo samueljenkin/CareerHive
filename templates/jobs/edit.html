@@ -3,26 +3,35 @@
 {% block content %}
 <h1>Edit job listing</h1>
 <form action="/jobs/{{ job['id'] }}" method="POST">
+    <label for="">Logo URL:</label>
+    <input type="text" name="logo" value="{{ logo['logo'] }}">
+
     <label for="">Job Title:</label>
     <input type="text" name="title" value="{{ job['title'] }}">
 
     <label for="">Salary:</label>
     <input type="text" name="salary" value="{{ job['salary'] }}">
 
-    <label for="">Job Type:</label>
-    <input type="text" name="type" value="{{ job['type'] }}">
-
     <label for="">Company:</label>
-    <input type="text" name="company" value="{{ job['company'] }}">
+    <input type="text" name="name" value="{{ job['name'] }}">
 
-    <label for="">Location:</label>
-    <input type="text" name="location" value="{{ job['location'] }}">
+    <label for="">Job Type (true or false):</label>
+    <input type="text" name="fulltime" value="{{ job['fulltime'] }}">
 
-    <label for="">URL:</label>
-    <input type="text" name="url" value="{{ job['url'] }}">
+    <label for="">City:</label>
+    <input type="text" name="city" value="{{ job['city'] }}">
+
+    <label for="">Zipcode:</label>
+    <input type="text" name="zipcode" value="{{ job['zipcode'] }}">
+
+    <label for="">Country:</label>
+    <input type="text" name="country" value="{{ job['country'] }}">
+
+    <label for="">Contact:</label>
+    <input type="text" name="author" value="{{ job['author'] }}">
 
     <label for="">Description:</label>
-    <input type="text" name="description" value="{{ job['description'] }}">
+    <input type="text" name="content" value="{{ job['content'] }}">
 
     <button>Edit job listing</button>
 </form>

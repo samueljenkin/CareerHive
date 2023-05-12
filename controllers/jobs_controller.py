@@ -1,23 +1,33 @@
 from flask import render_template, request, redirect, session
 from models.job import all_jobs, create_job, get_job, update_job, delete_job, save_job
 from services.session_info import current_user
+import requests
+
+def get_jobs_from_api():
+    api_url = f'https://apis.camillerakoto.fr/fakejobs/jobs'
+    response = requests.get(api_url).json()
+    return response
 
 def index():
     jobs = all_jobs()
-    return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
+    api_jobs = get_jobs_from_api()
+    return render_template('jobs/index.html', jobs=jobs, api_jobs=api_jobs, current_user=current_user())
 
 def new():
     return render_template('jobs/new.html')
 
 def create():
+    logo = request.form.get('logo')
     title = request.form.get('title')
     salary = request.form.get('salary')
-    type = request.form.get('type')
-    company = request.form.get('company')
-    location = request.form.get('location')
-    url = request.form.get('url')
-    description = request.form.get('description')
-    create_job(title, salary, type, company, location, url, description)
+    name = request.form.get('name')
+    fulltime = request.form.get('fulltime')
+    city = request.form.get('city')
+    zipcode = request.form.get('zipcode')
+    country = request.form.get('country')
+    author = request.form.get('author')
+    content = request.form.get('content')
+    create_job(logo, title, salary, name, fulltime, city, zipcode, country, author, content)
     return redirect('/')
 
 def edit(id):
@@ -25,14 +35,17 @@ def edit(id):
     return render_template('jobs/edit.html', job=job)
 
 def update(id):
+    logo = request.form.get('logo')
     title = request.form.get('title')
     salary = request.form.get('salary')
-    type = request.form.get('type')
-    company = request.form.get('company')
-    location = request.form.get('location')
-    url = request.form.get('url')
-    description = request.form.get('description')
-    update_job(title, salary, type, company, location, url, description, id)
+    name = request.form.get('name')
+    fulltime = request.form.get('fulltime')
+    city = request.form.get('city')
+    zipcode = request.form.get('zipcode')
+    country = request.form.get('country')
+    author = request.form.get('author')
+    content = request.form.get('content')
+    update_job(logo, title, salary, name, fulltime, city, zipcode, country, author, content, id)
     return redirect('/')
 
 def delete(id):
