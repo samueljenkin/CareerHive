@@ -9,8 +9,10 @@ def get_all_jobs_from_api():
     return response
 
 def get_filtered_jobs_from_api(key, value):
+    print(f'key: {key}, value: {value}')
     api_url = f'https://apis.camillerakoto.fr/fakejobs/jobs?{key}={value}'
     response = requests.get(api_url).json()
+    print(f'response: {response}')
     return response
     
 def index():
@@ -62,8 +64,9 @@ def save(id):
     return redirect('/')
 
 def search():
-    jobs = all_jobs()
-    key = request.form.get('key')
-    value = request.form.get('value')
+    key = request.form.get('dropdown')
+    value = request.form.get('input')
+    print(f'search function: key: {key} value: {value}')
     filtered_api_jobs = get_filtered_jobs_from_api(key, value)
-    return render_template('jobs/index.html',  jobs=jobs, api_jobs=filtered_api_jobs, current_user=current_user())
+    print(f'filtered api jobs: {filtered_api_jobs}')
+    return render_template('jobs/index.html', api_jobs=filtered_api_jobs, current_user=current_user())
