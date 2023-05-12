@@ -4,7 +4,7 @@
 <h1>Edit job listing</h1>
 <form action="/jobs/{{ job['id'] }}" method="POST">
     <label for="">Logo URL:</label>
-    <input type="text" name="logo" value="{{ logo['logo'] }}">
+    <input type="text" name="logo" value="{{ job['logo'] }}">
 
     <label for="">Job Title:</label>
     <input type="text" name="title" value="{{ job['title'] }}">
