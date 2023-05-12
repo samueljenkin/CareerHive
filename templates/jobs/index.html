@@ -49,6 +49,10 @@
     </section>
 
     <section class="controls">
+        <form action="/jobs/{{ job['id'] }}/view">
+            <button>View</button>
+        </form>
+        
         {% if current_user['id'] == job['user_id'] %}
         <form action="/jobs/{{ job['id'] }}/edit">
             <button>Edit</button>

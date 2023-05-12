@@ -67,3 +67,7 @@ def search():
     input = request.form.get('input')
     jobs = get_filtered_jobs(dropdown, input)
     return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
+
+def view(id):
+    job = get_job(id)
+    return render_template('jobs/view.html', job=job, current_user=current_user())
