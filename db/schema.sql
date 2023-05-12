@@ -5,6 +5,7 @@ CREATE DATABASE careerhive_app;
 -- Run on local and web service
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
+    user_id INTEGER,
     name TEXT,
     author TEXT,
     date DATE,

@@ -10,8 +10,8 @@ def populate_db():
 def all_jobs():
     return sql('SELECT * FROM jobs ORDER BY id')
 
-def create_job(logo, title, salary, name, fulltime, city, zipcode, country, author, content):
-    sql("INSERT INTO jobs(logo, title, salary, name, fulltime, city, zipcode, country, author, content, date) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) RETURNING *", [logo, title, salary, name, fulltime, city, zipcode, country, author, content])
+def create_job(user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content):
+    sql("INSERT INTO jobs(user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content, date) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) RETURNING *", [user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content])
 
 def get_job(id):
     jobs = sql("SELECT * FROM jobs WHERE id=%s", [id])

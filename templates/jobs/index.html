@@ -49,6 +49,7 @@
     </section>
 
     <section class="controls">
+        {% if current_user['id'] == job['user_id'] %}
         <form action="/jobs/{{ job['id'] }}/edit">
             <button>Edit</button>
         </form>
@@ -56,6 +57,7 @@
         <form action="/jobs/{{ job['id'] }}/delete" method="POST">
             <button>Delete</button>
         </form>
+        {% endif %}
 
         <form action="/jobs/{{ job['id'] }}/save" method="POST">
             <button>Save</button>

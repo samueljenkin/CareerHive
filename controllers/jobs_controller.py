@@ -14,6 +14,7 @@ def new():
     return render_template('jobs/new.html')
 
 def create():
+    user_id = session['user_id']
     logo = request.form.get('logo')
     title = request.form.get('title')
     salary = request.form.get('salary')
@@ -24,7 +25,7 @@ def create():
     country = request.form.get('country')
     author = request.form.get('author')
     content = request.form.get('content')
-    create_job(logo, title, salary, name, fulltime, city, zipcode, country, author, content)
+    create_job(user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content)
     return redirect('/')
 
 def edit(id):
