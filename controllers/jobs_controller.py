@@ -1,12 +1,12 @@
 from flask import render_template, request, redirect, session
-from models.job import all_jobs, create_job, get_job, update_job, delete_job, save_job
+from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, get_filtered_jobs
 from services.session_info import current_user
 import requests
 
-def get_all_jobs_from_api():
-    api_url = 'https://apis.camillerakoto.fr/fakejobs/jobs'
-    response = requests.get(api_url).json()
-    return response
+# def get_all_jobs_from_api():
+#     api_url = 'https://apis.camillerakoto.fr/fakejobs/jobs'
+#     response = requests.get(api_url).json()
+#     return response
 
 def get_filtered_jobs_from_api(key, value):
     print(f'key: {key}, value: {value}')
@@ -17,8 +17,10 @@ def get_filtered_jobs_from_api(key, value):
     
 def index():
     jobs = all_jobs()
-    api_jobs = get_all_jobs_from_api()
-    return render_template('jobs/index.html', jobs=jobs, api_jobs=api_jobs, current_user=current_user())
+    if jobs == []:
+        populate_db()
+        jobs = all_jobs()
+    return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
 
 def new():
     return render_template('jobs/new.html')
@@ -64,9 +66,7 @@ def save(id):
     return redirect('/')
 
 def search():
-    key = request.form.get('dropdown')
-    value = request.form.get('input')
-    print(f'search function: key: {key} value: {value}')
-    filtered_api_jobs = get_filtered_jobs_from_api(key, value)
-    print(f'filtered api jobs: {filtered_api_jobs}')
-    return render_template('jobs/index.html', api_jobs=filtered_api_jobs, current_user=current_user())
+    dropdown = request.form.get('dropdown')
+    input = request.form.get('input')
+    jobs = get_filtered_jobs(dropdown, input)
+    return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
