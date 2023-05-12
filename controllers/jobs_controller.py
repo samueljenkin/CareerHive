@@ -16,13 +16,7 @@ def get_filtered_jobs_from_api(key, value):
 def index():
     jobs = all_jobs()
     api_jobs = get_all_jobs_from_api()
-    key = request.form.get('key')
-    value = request.form.get('value')
-    filtered_api_jobs = get_filtered_jobs_from_api(key, value)
-    if value == None:
-        return render_template('jobs/index.html', jobs=jobs, api_jobs=api_jobs, current_user=current_user())
-    else:
-        return render_template('jobs/index.html', jobs=jobs, api_jobs=filtered_api_jobs, current_user=current_user())
+    return render_template('jobs/index.html', jobs=jobs, api_jobs=api_jobs, current_user=current_user())
 
 def new():
     return render_template('jobs/new.html')
@@ -66,3 +60,10 @@ def delete(id):
 def save(id):
     save_job(id, session['user_id'])
     return redirect('/')
+
+def search():
+    jobs = all_jobs()
+    key = request.form.get('key')
+    value = request.form.get('value')
+    filtered_api_jobs = get_filtered_jobs_from_api(key, value)
+    return render_template('jobs/index.html',  jobs=jobs, api_jobs=filtered_api_jobs, current_user=current_user())
