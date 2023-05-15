@@ -33,8 +33,16 @@
         </form>
     </section>
 
-    <section class="search">
+    <section class="filters">
         <form action="/jobs/search" method="POST">
+            <input type="text" name="searched">
+            <button>Search</button>
+        </form>
+
+        <!-- <form action="/jobs/search"></form> -->
+
+        <!-- <form action="/jobs/search" method="POST">
+            <h4>Filter Search</h4>
             <label for="search">Search by:</label>
             <select name="dropdown" id="search">
                 <option value="title">Job Title</option>
@@ -45,7 +53,7 @@
             </select>
             <input type="text" name="input">
             <button>Search</button>
-        </form>
+        </form> -->
     </section>
 </header>
 

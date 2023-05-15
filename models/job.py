@@ -35,8 +35,8 @@ def report_job(job_id, user_id):
 def view_job(job_id, user_id):
     sql("INSERT INTO viewed(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
 
-def get_filtered_jobs(dropdown, input):
-    jobs = sql(f"SELECT * FROM jobs WHERE {dropdown}='{input}'")
+def search_jobs(searched):
+    jobs = sql("SELECT * FROM jobs WHERE title LIKE %s OR name LIKE %s OR city LIKE %s OR country LIKE %s", ['%' + searched + '%'] * 4)
     return jobs
 
 def applied_jobs(user_id):
