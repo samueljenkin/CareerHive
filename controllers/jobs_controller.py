@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, session
 from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, search_jobs, applied_jobs, saved_jobs, viewed_jobs, reported_jobs
 from services.session_info import current_user
-import requests
     
 def index():
     jobs = all_jobs()
@@ -11,7 +10,7 @@ def index():
     return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
 
 def new():
-    return render_template('jobs/new.html')
+    return render_template('jobs/new.html', current_user=current_user())
 
 def create():
     user_id = session['user_id']
@@ -32,7 +31,7 @@ def edit(id):
     job = get_job(id)
     view_mode = request.args.get('view')
     print(view_mode)
-    return render_template('jobs/edit.html', job=job, view_mode=view_mode)
+    return render_template('jobs/edit.html', job=job, view_mode=view_mode, current_user=current_user())
 
 def update(id):
     logo = request.form.get('logo')
@@ -91,11 +90,12 @@ def report(id):
         return redirect('/')
 
 def search():
+    search = True
     searched = request.form.get('searched')
     employment_type = request.form.get('employment_type')
     salary = request.form.get('salary')
     jobs = search_jobs(searched.capitalize(), employment_type, salary.split())
-    return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
+    return render_template('jobs/index.html', search=search, jobs=jobs, current_user=current_user())
 
 def view(id):
     view_job(id, session['user_id'])
@@ -112,4 +112,4 @@ def stored():
         jobs = viewed_jobs(session['user_id'])
     elif stored_type == 'reported':
         jobs = reported_jobs(session['user_id'])
-    return render_template('jobs/stored.html', stored_type=stored_type, jobs=jobs)
+    return render_template('jobs/stored.html', stored_type=stored_type, jobs=jobs, current_user=current_user())

@@ -63,7 +63,7 @@ def saved_jobs(user_id):
     return jobs
 
 def viewed_jobs(user_id):
-    jobs = sql("SELECT jobs.*, MAX(viewed.id) AS viewed_id FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s GROUP BY jobs.id ORDER BY viewed_id DESCC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(viewed.id) AS viewed_id FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s GROUP BY jobs.id ORDER BY viewed_id DESC", [user_id])
     return jobs
 
 def reported_jobs(user_id):

@@ -9,6 +9,43 @@
 </head>
 
 <body>
+    <nav>
+        <section class="logo">
+            <img src="/static/images/CareerHive-logos.jpeg" alt="">
+            <h1>CareerHive</h1>
+        </section>
+
+        {% if current_user %}
+        <form action="/">
+            <button>Home</button>
+        </form>
+
+        <form action="/sessions/delete" method="POST">
+            <button>Log out</button>
+        </form>
+        
+        <form action="/jobs/new">
+            <button>Add job</button>
+        </form>
+
+        <form action="/jobs/stored?stored=applied" method="POST">
+            <button>View applied</button>
+        </form>
+
+        <form action="/jobs/stored?stored=saved" method="POST">
+            <button>View saved</button>
+        </form>
+
+        <form action="/jobs/stored?stored=viewed" method="POST">
+            <button>View history</button>
+        </form>
+
+        <form action="/jobs/stored?stored=reported" method="POST">
+            <button>View reported</button>
+        </form>
+        {% endif %}
+    </nav>
+
     {% block content %}
     {% endblock %}
 </body>
