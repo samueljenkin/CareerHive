@@ -37,33 +37,33 @@
 
         {% if stored_type == 'applied' %}
     
-        <form action="/jobs/{{ job['id'] }}/save" method="POST">
+        <form action="/jobs/{{ job['id'] }}/save?stored=applied" method="POST">
             <button>Save</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?stored=applied" method="POST">
             <button>Report</button>
         </form>
         
         {% elif stored_type == 'saved' %}
-        <form action="/jobs/{{ job['id'] }}/apply" method="POST">
+        <form action="/jobs/{{ job['id'] }}/apply?stored=saved" method="POST">
             <button>Apply</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?stored=saved" method="POST">
             <button>Report</button>
         </form>
         
         {% elif stored_type == 'viewed' %}
-        <form action="/jobs/{{ job['id'] }}/apply" method="POST">
+        <form action="/jobs/{{ job['id'] }}/apply?stored=viewed" method="POST">
             <button>Apply</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/save" method="POST">
+        <form action="/jobs/{{ job['id'] }}/save?stored=viewed" method="POST">
             <button>Save</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?stored=viewed" method="POST">
             <button>Report</button>
         </form>
         {% endif %}

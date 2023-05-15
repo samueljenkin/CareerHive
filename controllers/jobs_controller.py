@@ -60,8 +60,12 @@ def delete(id):
 def save(id):
     save_job(id, session['user_id'])
     view_mode = request.args.get('view')
+    stored_type = request.args.get('stored')
+    print(stored_type)
     if view_mode == 'True':
         return redirect(f'/jobs/{id}/view')
+    elif stored_type:
+        return redirect(f'/jobs/stored?stored={stored_type}')
     else:
         return redirect('/')
 
