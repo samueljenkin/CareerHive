@@ -22,3 +22,9 @@ def create():
 def delete():
     session.clear()
     return redirect('/')
+
+def guest():
+    email = 'guest'
+    user = find_user_by_email(email)
+    session['user_id'] = user['id']
+    return redirect('/')

@@ -27,6 +27,8 @@ CREATE TABLE users(
     password_digest TEXT
 );
 
+INSERT INTO users(first_name, last_name, email, password_digest) VALUES('Guest', 'Login', 'guest', 'guest');
+
 CREATE TABLE saved(
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
