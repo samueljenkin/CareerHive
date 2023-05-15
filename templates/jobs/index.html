@@ -7,6 +7,32 @@
     <h3>Welcome to CareerHive {{ current_user['first_name'] }}</h3>
 
     <section class="controls">
+        <form action="/sessions/delete" method="POST">
+            <button>Log out</button>
+        </form>
+
+        <form action="/jobs/new">
+            <button>Add job</button>
+        </form>
+
+        <form action="/jobs/applied">
+            <button>View applied</button>
+        </form>
+
+        <form action="">
+            <button>View saved</button>
+        </form>
+
+        <form action="">
+            <button>View history</button>
+        </form>
+
+        <form action="">
+            <button>View reported</button>
+        </form>
+    </section>
+
+    <section class="search">
         <form action="/jobs/search" method="POST">
             <label for="search">Search by:</label>
             <select name="dropdown" id="search">
@@ -18,14 +44,6 @@
             </select>
             <input type="text" name="input">
             <button>Search</button>
-        </form>
-
-        <form action="/sessions/delete" method="POST">
-            <button>Log out</button>
-        </form>
-
-        <form action="/jobs/new">
-            <button>Add job</button>
         </form>
     </section>
 </header>
