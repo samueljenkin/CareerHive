@@ -4,8 +4,13 @@ import requests
 def populate_db():
     api_url = 'https://apis.camillerakoto.fr/fakejobs/jobs'
     response = requests.get(api_url).json()
+    employment_type = ''
     for job in response:
-        sql("INSERT INTO jobs(logo, title, salary, company, employment_type, city, zipcode, country, contact, description, date) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) RETURNING *", [job['logo'], job['title'], 50000, job['name'], job['fulltime'], job['city'], job['zipcode'], job['country'], job['author'], job['content']])
+        if job['fulltime'] == 'true':
+            employment_type = 'full-time'
+        else:
+            employment_type = 'part-time'
+        sql("INSERT INTO jobs(logo, title, salary, company, employment_type, city, zipcode, country, contact, description, date) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) RETURNING *", [job['logo'], job['title'], 50000, job['name'], employment_type, job['city'], job['zipcode'], job['country'], job['author'], job['content']])
 
 def all_jobs():
     return sql("SELECT * FROM jobs ORDER BY id DESC")
