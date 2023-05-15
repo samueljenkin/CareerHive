@@ -8,7 +8,7 @@ def populate_db():
         sql("INSERT INTO jobs(logo, title, salary, name, fulltime, city, zipcode, country, author, content, date) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) RETURNING *", [job['logo'], job['title'], job['salary'], job['name'], job['fulltime'], job['city'], job['zipcode'], job['country'], job['author'], job['content']])
 
 def all_jobs():
-    return sql('SELECT * FROM jobs ORDER BY id')
+    return sql("SELECT * FROM jobs ORDER BY date DESC")
 
 def create_job(user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content):
     sql("INSERT INTO jobs(user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content, date) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) RETURNING *", [user_id, logo, title, salary, name, fulltime, city, zipcode, country, author, content])
@@ -40,17 +40,17 @@ def get_filtered_jobs(dropdown, input):
     return jobs
 
 def applied_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id = %s", [user_id])
+    jobs = sql("SELECT DISTINCT jobs.* FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id = %s ORDER BY id DESC", [user_id])
     return jobs
 
 def saved_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id = %s", [user_id])
+    jobs = sql("SELECT DISTINCT jobs.* FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id = %s ORDER BY id DESC", [user_id])
     return jobs
 
 def viewed_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s", [user_id])
+    jobs = sql("SELECT DISTINCT jobs.* FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s ORDER BY id DESC", [user_id])
     return jobs
 
 def reported_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM reported INNER JOIN jobs ON jobs.id = reported.job_id WHERE reported.user_id = %s", [user_id])
+    jobs = sql("SELECT DISTINCT jobs.* FROM reported INNER JOIN jobs ON jobs.id = reported.job_id WHERE reported.user_id = %s ORDER BY id DESC", [user_id])
     return jobs
