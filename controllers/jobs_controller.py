@@ -61,27 +61,32 @@ def save(id):
     save_job(id, session['user_id'])
     view_mode = request.args.get('view')
     stored_type = request.args.get('stored')
-    print(stored_type)
     if view_mode == 'True':
         return redirect(f'/jobs/{id}/view')
     elif stored_type:
-        return redirect(f'/jobs/stored?stored={stored_type}')
+        return stored()
     else:
         return redirect('/')
 
 def apply(id):
     apply_to_job(id, session['user_id'])
     view_mode = request.args.get('view')
+    stored_type = request.args.get('stored')
     if view_mode == 'True':
         return redirect(f'/jobs/{id}/view')
+    elif stored_type:
+        return stored()
     else:
         return redirect('/')
 
 def report(id):
     report_job(id, session['user_id'])
     view_mode = request.args.get('view')
+    stored_type = request.args.get('stored')
     if view_mode == 'True':
         return redirect(f'/jobs/{id}/view')
+    elif stored_type:
+        return stored()
     else:
         return redirect('/')
 

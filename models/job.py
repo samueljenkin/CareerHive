@@ -55,17 +55,17 @@ def search_jobs(searched, employment_type, salary):
     return jobs
 
 def applied_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id = %s ORDER BY id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(applied.id) AS applied_id FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id = %s GROUP BY jobs.id ORDER BY applied_id DESC", [user_id])
     return jobs
 
 def saved_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id = %s ORDER BY id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(saved.id) AS saved_id FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id = %s GROUP BY jobs.id ORDER BY saved_id DESC", [user_id])
     return jobs
 
 def viewed_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s ORDER BY id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(viewed.id) AS viewed_id FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s GROUP BY jobs.id ORDER BY viewed_id DESCC", [user_id])
     return jobs
 
 def reported_jobs(user_id):
-    jobs = sql("SELECT DISTINCT jobs.* FROM reported INNER JOIN jobs ON jobs.id = reported.job_id WHERE reported.user_id = %s ORDER BY id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(reported.id) AS reported_id FROM reported INNER JOIN jobs ON jobs.id = reported.job_id WHERE reported.user_id = %s GROUP BY jobs.id ORDER BY reported_id DESC", [user_id])
     return jobs
