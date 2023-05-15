@@ -38,7 +38,7 @@
             <select name="dropdown" id="search">
                 <option value="title">Job Title</option>
                 <option value="name">Company</option>
-                <option value="fulltime">Fulltime</option>
+                <option value="fulltime">Fulltime (true/false)</option>
                 <option value="city">City</option>
                 <option value="country">Country</option>
             </select>
@@ -58,7 +58,7 @@
         {% if job['fulltime'] == 'true' %}
         <p>Employment type: Full-time</p>
         {% else %}
-        <p>Employment type: Part-time/ Casual</p>
+        <p>Employment type: Part-time</p>
         {% endif %}
         <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
         <p>Contact: {{ job['author'] }}</p>
@@ -118,7 +118,7 @@
     {% if job['fulltime'] == 'true' %}
     <p>Employment type: Full-time</p>
     {% else %}
-    <p>Employment type: Part-time/ Caual</p>
+    <p>Employment type: Part-time</p>
     {% endif %}
     <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
     <p>Contact: {{ job['author'] }}</p>
