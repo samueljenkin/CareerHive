@@ -83,7 +83,9 @@ def report(id):
 
 def search():
     searched = request.form.get('searched')
-    jobs = search_jobs(searched)
+    employment_type = request.form.get('employment_type')
+    salary = request.form.get('salary')
+    jobs = search_jobs(searched.capitalize(), employment_type, salary.split())
     return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
 
 def view(id):

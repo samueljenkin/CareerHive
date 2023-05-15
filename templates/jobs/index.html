@@ -39,40 +39,26 @@
             <label for="">Search:</label>
             <input type="text" name="searched">
 
-            <!-- insert filters here -->
             <label for="employment_type">Employment Type:</label>
             <select name="employment_type" id="employment_type">
-                <option>Any</option>
+                <option value="None">Any</option>
                 <option value="true">Full-time</option>
                 <option value="false">Part-time</option>
             </select>
 
-            <label for="">Salary:</label>
-            <input type="radio" name="salary" id="low" value="low">
-            <label for="low">Any</label>
-            <input type="radio" name="salary" id="medium" value="medium">
-            <label for="medium">Full-time</label>
-            <input type="radio" name="salary" id="large" value="large">
-            <label for="large">Part-time</label>
-            
-
+            <label for="salary">Salary:</label>
+            <select name="salary" id="salary">
+                <option value="None">Any</option>
+                <option value="0 29999">$0-$29,999</option>
+                <option value="30000 59999">$30,000-$59,999</option>
+                <option value="60000 89999">$60,000-$89,999</option>
+                <option value="90000 119999">$90,000-$119,999</option>
+                <option value="120000 149999">$120,000-$149,999</option>
+                <option value="150000 999999">$150,000+</option>
+            </select>
 
             <button>Filter Jobs</button>
         </form>
-
-        <!-- <form action="/jobs/search" method="POST">
-            <h4>Filter Search</h4>
-            <label for="search">Search by:</label>
-            <select name="dropdown" id="search">
-                <option value="title">Job Title</option>
-                <option value="name">Company</option>
-                <option value="fulltime">Fulltime (true/false)</option>
-                <option value="city">City</option>
-                <option value="country">Country</option>
-            </select>
-            <input type="text" name="input">
-            <button>Search</button>
-        </form> -->
     </section>
 </header>
 
