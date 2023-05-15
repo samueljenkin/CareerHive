@@ -23,8 +23,8 @@ def create():
     zipcode = request.form.get('zipcode')
     country = request.form.get('country')
     contact = request.form.get('contact')
-    content = request.form.get('content')
-    create_job(user_id, logo, title, salary, company, employment_type, city, zipcode, country, contact, content)
+    description = request.form.get('description')
+    create_job(user_id, logo, title, salary, company, employment_type, city, zipcode, country, contact, description)
     return redirect('/')
 
 def edit(id):
@@ -43,8 +43,8 @@ def update(id):
     zipcode = request.form.get('zipcode')
     country = request.form.get('country')
     contact = request.form.get('contact')
-    content = request.form.get('content')
-    update_job(logo, title, salary, company, employment_type, city, zipcode, country, contact, content, id)
+    description = request.form.get('description')
+    update_job(logo, title, salary, company, employment_type, city, zipcode, country, contact, description, id)
     view_mode = request.args.get('view')
     print(view_mode)
     if view_mode == 'True':

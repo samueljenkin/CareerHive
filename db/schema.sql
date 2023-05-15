@@ -15,7 +15,7 @@ CREATE TABLE jobs(
     zipcode TEXT,
     country TEXT,
     title TEXT,
-    content TEXT,
+    description TEXT,
     logo TEXT
 );
 

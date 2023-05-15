@@ -55,7 +55,7 @@
         {% endif %}
         <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
         <p>Contact: {{ job['contact'] }}</p>
-        <p class="overflow">Job description: {{ job['content'] }}</p>
+        <p class="overflow">Job description: {{ job['description'] }}</p>
         <p>Date posted: {{ job['date'] }}</p>
     </section>
 
@@ -119,7 +119,7 @@
     {% endif %}
     <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
     <p>Contact: {{ job['contact'] }}</p>
-    <p class="overflow">Job description: {{ job['content'] }}</p>
+    <p class="overflow">Job description: {{ job['description'] }}</p>
     <p>Date posted: {{ job['date'] }}</p>
 </section>
 {% endfor %}

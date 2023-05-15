@@ -42,8 +42,8 @@
     <label for="">Contact:</label>
     <input type="text" name="contact" value="{{ job['contact'] }}">
 
-    <label for="">Description:</label>
-    <input type="text" name="content" value="{{ job['content'] }}">
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" cols="50" rows="10">{{ job['content'] }}</textarea>
 
     <button>Edit job listing</button>
 </form>
