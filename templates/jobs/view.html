@@ -41,7 +41,8 @@
         <form action="/jobs/{{ job['id'] }}/delete" method="POST">
             <button>Delete</button>
         </form>
-        {% endif %}
+
+        {% else %}
 
         <form action="/jobs/{{ job['id'] }}/save?view=True" method="POST">
             <button>Save</button>
@@ -54,5 +55,6 @@
         <form action="/jobs/{{ job['id'] }}/report?view=True" method="POST">
             <button>Report</button>
         </form>
+        {% endif %}
     </section>
 {% endblock %}

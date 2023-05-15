@@ -52,7 +52,7 @@
         <form action="/jobs/{{ job['id'] }}/view">
             <button>View</button>
         </form>
-        
+
         {% if current_user['id'] == job['user_id'] %}
         <form action="/jobs/{{ job['id'] }}/edit">
             <button>Edit</button>
@@ -61,19 +61,21 @@
         <form action="/jobs/{{ job['id'] }}/delete" method="POST">
             <button>Delete</button>
         </form>
-        {% endif %}
 
-        <form action="/jobs/{{ job['id'] }}/save" method="POST">
-            <button>Save</button>
-        </form>
+        {% else %}
 
         <form action="/jobs/{{ job['id'] }}/apply" method="POST">
             <button>Apply</button>
         </form>
 
+        <form action="/jobs/{{ job['id'] }}/save" method="POST">
+            <button>Save</button>
+        </form>
+
         <form action="/jobs/{{ job['id'] }}/report" method="POST">
             <button>Report</button>
         </form>
+        {% endif %}
     </section>
     {% endfor %}
 </main>
