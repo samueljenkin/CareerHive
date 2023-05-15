@@ -30,7 +30,9 @@ def create():
 
 def edit(id):
     job = get_job(id)
-    return render_template('jobs/edit.html', job=job)
+    view_mode = request.args.get('view')
+    print(view_mode)
+    return render_template('jobs/edit.html', job=job, view_mode=view_mode)
 
 def update(id):
     logo = request.form.get('logo')
@@ -44,7 +46,12 @@ def update(id):
     author = request.form.get('author')
     content = request.form.get('content')
     update_job(logo, title, salary, name, fulltime, city, zipcode, country, author, content, id)
-    return redirect('/')
+    view_mode = request.args.get('view')
+    print(view_mode)
+    if view_mode == 'True':
+        return redirect(f'/jobs/{id}/view')
+    else:
+        return redirect('/')
 
 def delete(id):
     delete_job(id)
@@ -52,15 +59,27 @@ def delete(id):
 
 def save(id):
     save_job(id, session['user_id'])
-    return redirect('/')
+    view_mode = request.args.get('view')
+    if view_mode == 'True':
+        return redirect(f'/jobs/{id}/view')
+    else:
+        return redirect('/')
 
 def apply(id):
     apply_to_job(id, session['user_id'])
-    return redirect('/')
+    view_mode = request.args.get('view')
+    if view_mode == 'True':
+        return redirect(f'/jobs/{id}/view')
+    else:
+        return redirect('/')
 
 def report(id):
     report_job(id, session['user_id'])
-    return redirect('/')
+    view_mode = request.args.get('view')
+    if view_mode == 'True':
+        return redirect(f'/jobs/{id}/view')
+    else:
+        return redirect('/')
 
 def search():
     dropdown = request.form.get('dropdown')

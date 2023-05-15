@@ -24,13 +24,17 @@
         {% endif %}
         <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
         <p>Contact: {{ job['author'] }}</p>
-        <p class="overflow">Job description: {{ job['content'] }}</p>
+        <p>Job description: {{ job['content'] }}</p>
         <p>Date posted: {{ job['date'] }}</p>
     </section>
 
     <section class="controls">
+        <form action="/">
+            <button>Back</button>
+        </form>
+
         {% if current_user['id'] == job['user_id'] %}
-        <form action="/jobs/{{ job['id'] }}/edit">
+        <form action="/jobs/{{ job['id'] }}/edit?view=True" method="POST">
             <button>Edit</button>
         </form>
 
@@ -39,15 +43,15 @@
         </form>
         {% endif %}
 
-        <form action="/jobs/{{ job['id'] }}/save" method="POST">
+        <form action="/jobs/{{ job['id'] }}/save?view=True" method="POST">
             <button>Save</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/apply" method="POST">
+        <form action="/jobs/{{ job['id'] }}/apply?view=True" method="POST">
             <button>Apply</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?view=True" method="POST">
             <button>Report</button>
         </form>
     </section>
