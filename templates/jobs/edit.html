@@ -14,13 +14,21 @@
     <input type="text" name="title" value="{{ job['title'] }}">
 
     <label for="">Salary:</label>
-    <input type="text" name="salary" value="{{ job['salary'] }}">
+    <input type="number" name="salary" value="{{ job['salary'] }}">
 
     <label for="">Company:</label>
-    <input type="text" name="name" value="{{ job['name'] }}">
+    <input type="text" name="company" value="{{ job['company'] }}">
 
-    <label for="">Job Type (true/false):</label>
-    <input type="text" name="fulltime" value="{{ job['fulltime'] }}">
+    <label for="employment_type">Employment Type:</label>
+    <select name="employment_type" id="employment_type">
+        {% if job['employment_type'] == 'true' %}
+        <option value="true">Full-time</option>
+        <option value="false">Part-time</option>
+        {% else %}
+        <option value="false">Part-time</option>
+        <option value="true">Full-time</option>
+        {% endif %}
+    </select>
 
     <label for="">City:</label>
     <input type="text" name="city" value="{{ job['city'] }}">
@@ -32,7 +40,7 @@
     <input type="text" name="country" value="{{ job['country'] }}">
 
     <label for="">Contact:</label>
-    <input type="text" name="author" value="{{ job['author'] }}">
+    <input type="text" name="contact" value="{{ job['contact'] }}">
 
     <label for="">Description:</label>
     <input type="text" name="content" value="{{ job['content'] }}">
