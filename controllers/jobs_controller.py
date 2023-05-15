@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session
-from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, get_filtered_jobs, applied_jobs
+from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, get_filtered_jobs, applied_jobs, saved_jobs, viewed_jobs, reported_jobs
 from services.session_info import current_user
 import requests
     
@@ -92,6 +92,14 @@ def view(id):
     job = get_job(id)
     return render_template('jobs/view.html', job=job, current_user=current_user())
 
-def applied():
-    jobs = applied_jobs(session['user_id'])
-    return render_template('jobs/saved/applied.html', jobs=jobs)
+def stored():
+    stored_type = request.args.get('stored')
+    if stored_type == 'applied':
+        jobs = applied_jobs(session['user_id'])
+    elif stored_type == 'saved':
+        jobs = saved_jobs(session['user_id'])
+    elif stored_type == 'viewed':
+        jobs = viewed_jobs(session['user_id'])
+    elif stored_type == 'reported':
+        jobs = reported_jobs(session['user_id'])
+    return render_template('jobs/stored.html', stored_type=stored_type, jobs=jobs)

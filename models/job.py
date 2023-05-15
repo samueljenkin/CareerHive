@@ -42,3 +42,15 @@ def get_filtered_jobs(dropdown, input):
 def applied_jobs(user_id):
     jobs = sql("SELECT DISTINCT jobs.* FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id = %s", [user_id])
     return jobs
+
+def saved_jobs(user_id):
+    jobs = sql("SELECT DISTINCT jobs.* FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id = %s", [user_id])
+    return jobs
+
+def viewed_jobs(user_id):
+    jobs = sql("SELECT DISTINCT jobs.* FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s", [user_id])
+    return jobs
+
+def reported_jobs(user_id):
+    jobs = sql("SELECT DISTINCT jobs.* FROM reported INNER JOIN jobs ON jobs.id = reported.job_id WHERE reported.user_id = %s", [user_id])
+    return jobs

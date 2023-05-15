@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if stored_type == 'applied' %}
 <h1>Applied Jobs</h1>
+{% elif stored_type == 'saved' %}
+<h1>Saved Jobs</h1>
+{% elif stored_type == 'viewed' %}
+<h1>View history</h1>
+{% elif stored_type == 'reported' %}
+<h1>Reported Jobs</h1>
+{% endif %}
 
 <main class="jobs">
     {% for job in jobs %}
@@ -22,8 +30,33 @@
     </section>
 
     <section class="controls">
+
         <form action="/jobs/{{ job['id'] }}/view">
             <button>View</button>
+        </form>
+
+        {% if stored_type == 'applied' %}
+    
+        <form action="/jobs/{{ job['id'] }}/save" method="POST">
+            <button>Save</button>
+        </form>
+
+        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+            <button>Report</button>
+        </form>
+        
+        {% elif stored_type == 'saved' %}
+        <form action="/jobs/{{ job['id'] }}/apply" method="POST">
+            <button>Apply</button>
+        </form>
+
+        <form action="/jobs/{{ job['id'] }}/report" method="POST">
+            <button>Report</button>
+        </form>
+        
+        {% elif stored_type == 'viewed' %}
+        <form action="/jobs/{{ job['id'] }}/apply" method="POST">
+            <button>Apply</button>
         </form>
 
         <form action="/jobs/{{ job['id'] }}/save" method="POST">
@@ -33,6 +66,7 @@
         <form action="/jobs/{{ job['id'] }}/report" method="POST">
             <button>Report</button>
         </form>
+        {% endif %}
     </section>
     {% endfor %}
 </main>

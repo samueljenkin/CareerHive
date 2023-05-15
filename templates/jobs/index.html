@@ -15,19 +15,19 @@
             <button>Add job</button>
         </form>
 
-        <form action="/jobs/applied">
+        <form action="/jobs/stored?stored=applied" method="POST">
             <button>View applied</button>
         </form>
 
-        <form action="">
+        <form action="/jobs/stored?stored=saved" method="POST">
             <button>View saved</button>
         </form>
 
-        <form action="">
+        <form action="/jobs/stored?stored=viewed" method="POST">
             <button>View history</button>
         </form>
 
-        <form action="">
+        <form action="/jobs/stored?stored=reported" method="POST">
             <button>View reported</button>
         </form>
     </section>
