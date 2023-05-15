@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="report">
+
+    <form action="/jobs/{{ id }}/file" method="POST">
+        <label for="report">Reason for reporting:</label>
+        <textarea name="message" id="report" cols="50" rows="10"></textarea>
+
+        <button>Report Listing</button>
+    </form>
+</section>
+{% endblock %}

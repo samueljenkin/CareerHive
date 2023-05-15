@@ -49,7 +49,7 @@
             <button>Save</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report?stored=applied" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?stored=applied">
             <button>Report</button>
         </form>
         
@@ -58,7 +58,7 @@
             <button>Apply</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report?stored=saved" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?stored=saved">
             <button>Report</button>
         </form>
         
@@ -71,9 +71,12 @@
             <button>Save</button>
         </form>
 
-        <form action="/jobs/{{ job['id'] }}/report?stored=viewed" method="POST">
+        <form action="/jobs/{{ job['id'] }}/report?stored=viewed">
             <button>Report</button>
         </form>
+
+        {% elif stored_type == 'reported' %}
+            <p>Report Message: {{ job['message'] }}</p>
         {% endif %}
     </section>
     {% endfor %}

@@ -79,7 +79,11 @@ def apply(id):
         return redirect('/')
 
 def report(id):
-    report_job(id, session['user_id'])
+    return render_template('jobs/report.html', id=id, current_user=current_user())
+
+def file(id):
+    message = request.form.get('message')
+    report_job(id, session['user_id'], message)
     view_mode = request.args.get('view')
     stored_type = request.args.get('stored')
     if view_mode == 'True':

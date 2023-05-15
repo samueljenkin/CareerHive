@@ -44,7 +44,8 @@ CREATE TABLE applied(
 CREATE TABLE reported(
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
-    job_id INTEGER
+    job_id INTEGER,
+    message TEXT
 );
 
 CREATE TABLE viewed(

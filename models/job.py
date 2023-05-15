@@ -34,8 +34,8 @@ def save_job(job_id, user_id):
 def apply_to_job(job_id, user_id):
     sql("INSERT INTO applied(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
 
-def report_job(job_id, user_id):
-    sql("INSERT INTO reported(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
+def report_job(job_id, user_id, message):
+    sql("INSERT INTO reported(job_id, user_id, message) VALUES(%s, %s, %s) RETURNING *", [job_id, user_id, message])
 
 def view_job(job_id, user_id):
     sql("INSERT INTO viewed(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
@@ -60,17 +60,17 @@ def search_jobs(searched, employment_type, salary):
     return jobs
 
 def applied_jobs(user_id):
-    jobs = sql("SELECT jobs.*, MAX(applied.id) AS applied_id FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id = %s GROUP BY jobs.id ORDER BY applied_id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(applied.id) AS applied_id FROM applied INNER JOIN jobs ON jobs.id = applied.job_id WHERE applied.user_id=%s GROUP BY jobs.id ORDER BY applied_id DESC", [user_id])
     return jobs
 
 def saved_jobs(user_id):
-    jobs = sql("SELECT jobs.*, MAX(saved.id) AS saved_id FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id = %s GROUP BY jobs.id ORDER BY saved_id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(saved.id) AS saved_id FROM saved INNER JOIN jobs ON jobs.id = saved.job_id WHERE saved.user_id=%s GROUP BY jobs.id ORDER BY saved_id DESC", [user_id])
     return jobs
 
 def viewed_jobs(user_id):
-    jobs = sql("SELECT jobs.*, MAX(viewed.id) AS viewed_id FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id = %s GROUP BY jobs.id ORDER BY viewed_id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, MAX(viewed.id) AS viewed_id FROM viewed INNER JOIN jobs ON jobs.id = viewed.job_id WHERE viewed.user_id=%s GROUP BY jobs.id ORDER BY viewed_id DESC", [user_id])
     return jobs
 
 def reported_jobs(user_id):
-    jobs = sql("SELECT jobs.*, MAX(reported.id) AS reported_id FROM reported INNER JOIN jobs ON jobs.id = reported.job_id WHERE reported.user_id = %s GROUP BY jobs.id ORDER BY reported_id DESC", [user_id])
+    jobs = sql("SELECT jobs.*, reported.message FROM jobs INNER JOIN reported ON jobs.id = reported.job_id WHERE reported.id IN (SELECT MAX(id) FROM reported WHERE user_id=%s GROUP BY job_id) ORDER BY reported.id DESC", [user_id])
     return jobs
