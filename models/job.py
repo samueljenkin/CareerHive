@@ -32,6 +32,9 @@ def apply_to_job(job_id, user_id):
 def report_job(job_id, user_id):
     sql("INSERT INTO reported(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
 
+def view_job(job_id, user_id):
+    sql("INSERT INTO viewed(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
+
 def get_filtered_jobs(dropdown, input):
     jobs = sql(f"SELECT * FROM jobs WHERE {dropdown}='{input}'")
     return jobs

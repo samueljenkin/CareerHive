@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session
-from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, get_filtered_jobs
+from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, get_filtered_jobs
 from services.session_info import current_user
 import requests
     
@@ -88,5 +88,6 @@ def search():
     return render_template('jobs/index.html', jobs=jobs, current_user=current_user())
 
 def view(id):
+    view_job(id, session['user_id'])
     job = get_job(id)
     return render_template('jobs/view.html', job=job, current_user=current_user())
