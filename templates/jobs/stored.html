@@ -76,7 +76,12 @@
         </form>
 
         {% elif stored_type == 'reported' %}
-            <p>Report Message: {{ job['message'] }}</p>
+        <p>Report Message: {{ job['message'] }}</p>
+        <p>Reported on: {{ job['date'] }}</p>
+
+        <form action="/jobs/{{ job['id'] }}/remove?stored=reported" method="POST">
+            <button>Remove Report</button>
+        </form>
         {% endif %}
     </section>
     {% endfor %}

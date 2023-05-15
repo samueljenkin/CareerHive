@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.jobs_controller import index, new, create, edit, update, delete, save, apply, report, file, search, view, stored
+from controllers.jobs_controller import index, new, create, edit, update, delete, save, apply, report, file, search, view, stored, remove
 
 jobs_routes = Blueprint('jobs_routes', __name__)
 
@@ -16,3 +16,4 @@ jobs_routes.route('/<id>/file', methods=["POST"])(file)
 jobs_routes.route('/search', methods=["POST"])(search)
 jobs_routes.route('/<id>/view')(view)
 jobs_routes.route('/stored', methods=["POST"])(stored)
+jobs_routes.route('/<id>/remove', methods=["POST"])(remove)

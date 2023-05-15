@@ -104,20 +104,6 @@
 </main>
 
 {% else %}
-<section class="access">
-    <form action="/users/new">
-        <button>Sign up</button>
-    </form>
-
-    <form action="/sessions/new">
-        <button>Log in</button>
-    </form>
-
-    <form action="/sessions/guest">
-        <button>Continue as guest</button>
-    </form>
-</section>
-
 {% for job in jobs %}
 <section class="job">
     <img src="{{ job['logo'] }}" alt="">

@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session
-from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, search_jobs, applied_jobs, saved_jobs, viewed_jobs, reported_jobs
+from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, search_jobs, applied_jobs, saved_jobs, viewed_jobs, reported_jobs, remove_report
 from services.session_info import current_user
     
 def index():
@@ -30,7 +30,6 @@ def create():
 def edit(id):
     job = get_job(id)
     view_mode = request.args.get('view')
-    print(view_mode)
     return render_template('jobs/edit.html', job=job, view_mode=view_mode, current_user=current_user())
 
 def update(id):
@@ -46,7 +45,6 @@ def update(id):
     description = request.form.get('description')
     update_job(logo, title, salary, company, employment_type, city, zipcode, country, contact, description, id)
     view_mode = request.args.get('view')
-    print(view_mode)
     if view_mode == 'True':
         return redirect(f'/jobs/{id}/view')
     else:
@@ -108,6 +106,8 @@ def view(id):
 
 def stored():
     stored_type = request.args.get('stored')
+    print(stored_type)
+    print(stored_type)
     if stored_type == 'applied':
         jobs = applied_jobs(session['user_id'])
     elif stored_type == 'saved':
@@ -117,3 +117,7 @@ def stored():
     elif stored_type == 'reported':
         jobs = reported_jobs(session['user_id'])
     return render_template('jobs/stored.html', stored_type=stored_type, jobs=jobs, current_user=current_user())
+
+def remove(id):
+    remove_report(id)
+    return stored()
