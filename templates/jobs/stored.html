@@ -35,54 +35,53 @@
         <p>Contact: {{ job['contact'] }}</p>
         <p class="overflow">Job description: {{ job['description'] }}</p>
         <p>Date posted: {{ job['date'] }}</p>
-    </section>
 
-    <section class="controls">
-
-        <form action="/jobs/{{ job['id'] }}/view">
-            <button>View</button>
-        </form>
-
-        {% if stored_type == 'applied' %}
+        <section class="controls">
+            <form action="/jobs/{{ job['id'] }}/view">
+                <button>View</button>
+            </form>
     
-        <form action="/jobs/{{ job['id'] }}/save?stored=applied" method="POST">
-            <button>Save</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/report?stored=applied">
-            <button>Report</button>
-        </form>
+            {% if stored_type == 'applied' %}
         
-        {% elif stored_type == 'saved' %}
-        <form action="/jobs/{{ job['id'] }}/apply?stored=saved" method="POST">
-            <button>Apply</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/report?stored=saved">
-            <button>Report</button>
-        </form>
-        
-        {% elif stored_type == 'viewed' %}
-        <form action="/jobs/{{ job['id'] }}/apply?stored=viewed" method="POST">
-            <button>Apply</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/save?stored=viewed" method="POST">
-            <button>Save</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/report?stored=viewed">
-            <button>Report</button>
-        </form>
-
-        {% elif stored_type == 'reported' %}
-        <p>Report Message: {{ job['message'] }}</p>
-        <p>Reported on: {{ job['date'] }}</p>
-
-        <form action="/jobs/{{ job['id'] }}/remove?stored=reported" method="POST">
-            <button>Remove Report</button>
-        </form>
-        {% endif %}
+            <form action="/jobs/{{ job['id'] }}/save?stored=applied" method="POST">
+                <button>Save</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/report?stored=applied">
+                <button>Report</button>
+            </form>
+            
+            {% elif stored_type == 'saved' %}
+            <form action="/jobs/{{ job['id'] }}/apply?stored=saved" method="POST">
+                <button>Apply</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/report?stored=saved">
+                <button>Report</button>
+            </form>
+            
+            {% elif stored_type == 'viewed' %}
+            <form action="/jobs/{{ job['id'] }}/apply?stored=viewed" method="POST">
+                <button>Apply</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/save?stored=viewed" method="POST">
+                <button>Save</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/report?stored=viewed">
+                <button>Report</button>
+            </form>
+    
+            {% elif stored_type == 'reported' %}
+            <p>Report Message: {{ job['message'] }}</p>
+            <p>Reported on: {{ job['date'] }}</p>
+    
+            <form action="/jobs/{{ job['id'] }}/remove?stored=reported" method="POST">
+                <button>Remove Report</button>
+            </form>
+            {% endif %}
+        </section>
     </section>
     {% endfor %}
 </main>

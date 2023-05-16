@@ -28,31 +28,32 @@
         <p>Contact: {{ job['contact'] }}</p>
         <p>Job description: {{ job['description'] }}</p>
         <p>Date posted: {{ job['date'] }}</p>
+
+        <section class="controls">
+            {% if current_user['id'] == job['user_id'] %}
+            <form action="/jobs/{{ job['id'] }}/edit?view=True" method="POST">
+                <button>Edit</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/delete" method="POST">
+                <button>Delete</button>
+            </form>
+    
+            {% else %}
+    
+            <form action="/jobs/{{ job['id'] }}/save?view=True" method="POST">
+                <button>Save</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/apply?view=True" method="POST">
+                <button>Apply</button>
+            </form>
+    
+            <form action="/jobs/{{ job['id'] }}/report?view=True">
+                <button>Report</button>
+            </form>
+            {% endif %}
+        </section>
     </section>
-
-    <section class="controls">
-        {% if current_user['id'] == job['user_id'] %}
-        <form action="/jobs/{{ job['id'] }}/edit?view=True" method="POST">
-            <button>Edit</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/delete" method="POST">
-            <button>Delete</button>
-        </form>
-
-        {% else %}
-
-        <form action="/jobs/{{ job['id'] }}/save?view=True" method="POST">
-            <button>Save</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/apply?view=True" method="POST">
-            <button>Apply</button>
-        </form>
-
-        <form action="/jobs/{{ job['id'] }}/report?view=True">
-            <button>Report</button>
-        </form>
-        {% endif %}
-    </section>
+</main>
 {% endblock %}
