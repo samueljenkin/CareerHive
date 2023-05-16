@@ -9,8 +9,8 @@ Welcome to CareerHive, the ultimate destination for job seekers and employers. R
     - Choose to sign up, log in, or continue as a guest to unlock and experience all the fantastic features showcased in the second image below.
     - Above all, have fun!
 
-![screenshot of welcome page](static/images/README_images/Screenshot%202023-05-16%20at%2010.45.55%20am.png)
-![screenshot of home page](static/images/README_images/Screenshot%202023-05-16%20at%2010.46.08%20am.png)
+Welcome page: ![screenshot of welcome page](static/images/README_images/Screenshot%202023-05-16%20at%2010.45.55%20am.png)
+Home page: ![screenshot of home page](static/images/README_images/Screenshot%202023-05-16%20at%2010.46.08%20am.png)
 
 
 ## :pencil2: Planning & Problem Solving
