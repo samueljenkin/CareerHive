@@ -8,7 +8,7 @@ from routes.sessions_routes import sessions_routes
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 
 app.register_blueprint(jobs_routes, url_prefix='/jobs')
 app.register_blueprint(users_routes, url_prefix='/users')
