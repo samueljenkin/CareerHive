@@ -1,6 +1,9 @@
 # CareerHive
 Welcome to CareerHive, the ultimate destination for job seekers and employers. Revolutionising the job market, CareerHive offers a wide range of opportunities tailored to your preferences. Find your dream job with advanced search options based on title, location, type, and salary. Stay organised by tracking viewed, applied, and saved jobs in our user-friendly interface. Join us today and unlock limitless career possibilities. Welcome to CareerHive, where your dream job awaits.
 
+Note: This application runs on a free-to-use service with a very low CPU, so it may experience occasional slowness. I apologise for any inconvenience this may cause and kindly ask for your patience while the application loads.
+Additionally, despite the potential warning message, rest assured that this site is completely safe for usage. For your privacy and convenience, kindly refrain from entering any personal information and feel free to use a fictitious name and email instead.
+
 ## :computer: [Click here](https://careerhive.onrender.com) to see my live project!
 
 ## :page_facing_up: About
@@ -28,6 +31,7 @@ Home page: ![screenshot of home page](static/images/README_images/Screenshot%202
 - To ensure a personalised experience, the project incorporates a feature that allows logged-in users to track their interactions and activities. This valuable information is securely accessible only through the user's unique login details, ensuring privacy and confidentiality.
 
 ## :scream: Bugs to fix :poop:
+- Add required to input fields for new & edit
 - Improve CSS (inc. classes & ids)
 - Make HTML more Semantic 
 - Refactor Python 
@@ -37,6 +41,12 @@ Looking back on the development process, there are valuable lessons learned and 
 
 ## :white_check_mark: Future features
 - Better CSS
+- Placeholder text for searchbar
+- break search bar into 2 for what & place 
+- Add a comma for the salary for readability
+- Add option for pay to be salary or hourly (or any other)
+- Add shift/ schedule for the job
+- For default jobs use random to choose random salary/employment type/scheduale
 - Place to view all posted jobs by current user
 - Option to remove saved jobs, unapply and clear certain or all history
 - Add a search history memory to the search bar for frequent searches
