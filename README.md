@@ -2,9 +2,9 @@
 Welcome to CareerHive, the ultimate destination for job seekers and employers. Revolutionising the job market, CareerHive offers a wide range of opportunities tailored to your preferences. Find your dream job with advanced search options based on title, location, type, and salary. Stay organised by tracking viewed, applied, and saved jobs in our user-friendly interface. Join us today and unlock limitless career possibilities. Welcome to CareerHive, where your dream job awaits.
 
 Note: This application runs on a free-to-use service with a very low CPU, so it may experience occasional slowness. I apologise for any inconvenience this may cause and kindly ask for your patience while the application loads.
-Additionally, despite the potential warning message, rest assured that this site is completely safe for usage. For your privacy and convenience, kindly refrain from entering any personal information and feel free to use a fictitious name and email instead.
+Additionally, for your privacy and convenience, kindly refrain from entering any personal information and feel free to use a fictitious name and email instead.
 
-## :computer: [Click here](https://careerhive.onrender.com) to see my live project!
+## :computer: [Click here](https://careerhive-6o23.onrender.com) to see my live project!
 
 ## :page_facing_up: About
 - How to make the most of my awesome project:
