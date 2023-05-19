@@ -40,7 +40,11 @@ def report_job(job_id, user_id, message):
 def view_job(job_id, user_id):
     sql("INSERT INTO viewed(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
 
-def search_jobs(searched, employment_type, salary):
+def search_jobs(searched):
+    jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s OR city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + searched + '%'] * 4)
+    return jobs
+
+def advanced_search(searched, employment_type, salary):
     if searched == '' and employment_type == 'None' and salary[0] == 'None':
         jobs = sql("SELECT * FROM jobs ORDER BY id DESC")
     elif searched == '' and employment_type != 'None' and salary[0] == 'None':

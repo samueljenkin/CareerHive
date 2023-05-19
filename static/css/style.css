@@ -79,7 +79,6 @@ nav img {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    /* z-index: 1; */
     right: 0;
   }
   
@@ -108,3 +107,7 @@ nav img {
   /* .menu:hover .menubtn {
     background-color: grey;
 } */
+
+#hidden {
+  display: none;
+}

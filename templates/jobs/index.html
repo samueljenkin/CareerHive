@@ -6,11 +6,14 @@
     <h3>Welcome to CareerHive {{ current_user['first_name'] }}</h3>
 
     <section class="filters">
-        <h3>Filters</h3>
+        <h3>Search</h3>
         <form action="/jobs/search" method="POST">
             <label for="">Search:</label>
             <input type="text" name="searched">
+            <button>Search Jobs</button>
 
+            {% if advanced %}
+            <h3>Advanced Filters</h3>
             <label for="employment_type">Employment Type:</label>
             <select name="employment_type" id="employment_type">
                 <option value="None">Any</option>
@@ -33,15 +36,32 @@
                 <option value="150000 999999">$150,000+</option>
             </select>
 
-            <button>Filter Jobs</button>
+            <select name="advanced" id="hidden">
+                <option value="True">Any</option>
+            </select>
+            {% endif %}
         </form>
 
-        {% if search %}
+        {% if search and advanced %}
         <form action="/">
-            <button>Clear Filter</button>
+            <button>Clear</button>
+        </form>
+        {% elif search and not advanced %}
+        <form action="/">
+            <button>Clear Search</button>
+        </form>
+        <form action="/jobs/advanced" method="POST">
+            <button>Advanced Filters</button>
+        </form>
+        {% elif not search and advanced %}
+        <form action="/">
+            <button>Remove Advanced Filters</button>
+        </form>
+        {% else %}
+        <form action="/jobs/advanced" method="POST">
+            <button>Advanced Filters</button>
         </form>
         {% endif %}
-
     </section>
 </header>
 

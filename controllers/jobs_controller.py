@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session
-from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, search_jobs, applied_jobs, saved_jobs, viewed_jobs, reported_jobs, remove_report
+from models.job import populate_db, all_jobs, create_job, get_job, update_job, delete_job, save_job, apply_to_job, report_job, view_job, advanced_search, applied_jobs, saved_jobs, viewed_jobs, reported_jobs, remove_report, search_jobs
 from services.session_info import current_user
     
 def index():
@@ -96,8 +96,19 @@ def search():
     searched = request.form.get('searched')
     employment_type = request.form.get('employment_type')
     salary = request.form.get('salary')
-    jobs = search_jobs(searched.capitalize(), employment_type, salary.split())
-    return render_template('jobs/index.html', search=search, jobs=jobs, current_user=current_user())
+    advanced = request.form.get('advanced')
+    if advanced == 'True':
+        advanced = True
+    if not employment_type and not salary:
+        jobs = search_jobs(searched.capitalize())
+    else:
+        jobs = advanced_search(searched.capitalize(), employment_type, salary.split())
+    return render_template('jobs/index.html', advanced=advanced, search=search, jobs=jobs, current_user=current_user())
+
+def advanced():
+    advanced = True
+    jobs = all_jobs()
+    return render_template('jobs/index.html', jobs=jobs, advanced=advanced, current_user=current_user())
 
 def view(id):
     view_job(id, session['user_id'])
