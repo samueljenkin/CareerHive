@@ -40,27 +40,53 @@ def report_job(job_id, user_id, message):
 def view_job(job_id, user_id):
     sql("INSERT INTO viewed(job_id, user_id) VALUES(%s, %s) RETURNING *", [job_id, user_id])
 
-def search_jobs(searched):
-    jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s OR city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + searched + '%'] * 4)
+def search_jobs(what, where):
+    if what == '' and where == '':
+        jobs = sql("SELECT * FROM jobs ORDER BY id DESC")
+    elif what != '' and where == '':
+        jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s ORDER BY id DESC", ['%' + what + '%'] * 2)
+    elif what == '' and where != '':
+        jobs = sql("SELECT * FROM jobs WHERE city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + where + '%'] * 2)
+    else:
+        jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + what + '%', '%' + what + '%', '%' + where + '%', '%' + where + '%'])
     return jobs
 
-def advanced_search(searched, employment_type, salary):
-    if searched == '' and employment_type == 'None' and salary[0] == 'None':
+def advanced_search(what, where, employment_type, salary):
+    if what == '' and where == '' and employment_type == 'None' and salary[0] == 'None':
         jobs = sql("SELECT * FROM jobs ORDER BY id DESC")
-    elif searched == '' and employment_type != 'None' and salary[0] == 'None':
+    elif what == '' and where == '' and employment_type != 'None' and salary[0] == 'None':
         jobs = sql("SELECT * FROM jobs WHERE employment_type=%s ORDER BY id DESC", [employment_type])
-    elif searched == '' and employment_type == 'None' and salary[0] != 'None':
+    elif what == '' and where == '' and employment_type == 'None' and salary[0] != 'None':
         jobs = sql("SELECT * FROM jobs WHERE salary BETWEEN %s AND %s ORDER BY id DESC", [int(salary[0]), int(salary[1])])
-    elif searched == '' and employment_type != 'None' and salary[0] != 'None':
+    elif what == '' and where == '' and employment_type != 'None' and salary[0] != 'None':
         jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND salary BETWEEN %s AND %s ORDER BY id DESC", [employment_type, int(salary[0]), int(salary[1])])
-    elif searched != '' and employment_type == 'None' and salary[0] == 'None':
-        jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s OR city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + searched + '%'] * 4)
-    elif searched != '' and employment_type != 'None' and salary[0] == 'None':
-        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s OR title ILIKE %s OR company ILIKE %s OR city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [employment_type, '%' + searched + '%', '%' + searched + '%', '%' + searched + '%', '%' + searched + '%'])
-    elif searched != '' and employment_type == 'None' and salary[0] != 'None':
-        jobs = sql("SELECT * FROM jobs WHERE salary BETWEEN %s AND %s OR title ILIKE %s OR company ILIKE %s OR city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [int(salary[0]), int(salary[1]), '%' + searched + '%', '%' + searched + '%', '%' + searched + '%', '%' + searched + '%'])
-    elif searched != '' and employment_type != 'None' and salary[0] != 'None':
-        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND salary BETWEEN %s AND %s OR title ILIKE %s OR company ILIKE %s OR city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [employment_type, int(salary[0]), int(salary[1]), '%' + searched + '%', '%' + searched + '%', '%' + searched + '%', '%' + searched + '%'])
+
+    elif what != '' and where == '' and employment_type == 'None' and salary[0] == 'None':
+        jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s ORDER BY id DESC", ['%' + what + '%'] * 2)
+    elif what != '' and where == '' and employment_type != 'None' and salary[0] == 'None':
+        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND title ILIKE %s OR company ILIKE %s ORDER BY id DESC", [employment_type, '%' + what + '%', '%' + what + '%'])
+    elif what != '' and where == '' and employment_type == 'None' and salary[0] != 'None':
+        jobs = sql("SELECT * FROM jobs WHERE salary BETWEEN %s AND %s AND title ILIKE %s OR company ILIKE %s ORDER BY id DESC", [int(salary[0]), int(salary[1]), '%' + what + '%', '%' + what + '%'])
+    elif what != '' and where == '' and employment_type != 'None' and salary[0] != 'None':
+        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND salary BETWEEN %s AND %s AND title ILIKE %s OR company ILIKE %s ORDER BY id DESC", [employment_type, int(salary[0]), int(salary[1]), '%' + what + '%', '%' + what + '%'])
+
+    elif what == '' and where != '' and employment_type == 'None' and salary[0] == 'None':
+        jobs = sql("SELECT * FROM jobs WHERE city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + where + '%'] * 2)
+    elif what == '' and where != '' and employment_type != 'None' and salary[0] == 'None':
+        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [employment_type, '%' + where + '%', '%' + where + '%'])
+    elif what == '' and where != '' and employment_type == 'None' and salary[0] != 'None':
+        jobs = sql("SELECT * FROM jobs WHERE salary BETWEEN %s AND %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [int(salary[0]), int(salary[1]), '%' + where + '%', '%' + where + '%'])
+    elif what == '' and where != '' and employment_type != 'None' and salary[0] != 'None':
+        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND salary BETWEEN %s AND %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [employment_type, int(salary[0]), int(salary[1]), '%' + where + '%', '%' + where + '%'])
+        
+    elif what != '' and where != '' and employment_type == 'None' and salary[0] == 'None':
+        jobs = sql("SELECT * FROM jobs WHERE title ILIKE %s OR company ILIKE %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", ['%' + what + '%', '%' + what + '%', '%' + where + '%', '%' + where + '%'])
+    elif what != '' and where != '' and employment_type != 'None' and salary[0] == 'None':
+        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND title ILIKE %s OR company ILIKE %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [employment_type, '%' + what + '%', '%' + what + '%', '%' + where + '%', '%' + where + '%'])
+    elif what != '' and where != '' and employment_type == 'None' and salary[0] != 'None':
+        jobs = sql("SELECT * FROM jobs WHERE salary BETWEEN %s AND %s AND title ILIKE %s OR company ILIKE %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [int(salary[0]), int(salary[1]), '%' + what + '%', '%' + what + '%', '%' + where + '%', '%' + where + '%'])
+    elif what != '' and where != '' and employment_type != 'None' and salary[0] != 'None':
+        jobs = sql("SELECT * FROM jobs WHERE employment_type=%s AND salary BETWEEN %s AND %s AND title ILIKE %s OR company ILIKE %s AND city ILIKE %s OR country ILIKE %s ORDER BY id DESC", [employment_type, int(salary[0]), int(salary[1]), '%' + what + '%', '%' + what + '%', '%' + where + '%', '%' + where + '%'])
     return jobs
 
 def applied_jobs(user_id):

@@ -8,8 +8,10 @@
     <section class="filters">
         <h3>Search</h3>
         <form action="/jobs/search" method="POST">
-            <label for="">Search:</label>
-            <input type="text" name="searched">
+            <label for="">What:</label>
+            <input type="text" name="what">
+            <label for="">Where:</label>
+            <input type="text" name="where">
             <button>Search Jobs</button>
 
             {% if advanced %}

@@ -93,16 +93,17 @@ def file(id):
 
 def search():
     search = True
-    searched = request.form.get('searched')
+    what = request.form.get('what')
+    where = request.form.get('where')
     employment_type = request.form.get('employment_type')
     salary = request.form.get('salary')
     advanced = request.form.get('advanced')
     if advanced == 'True':
         advanced = True
     if not employment_type and not salary:
-        jobs = search_jobs(searched.capitalize())
+        jobs = search_jobs(what.capitalize(), where.capitalize())
     else:
-        jobs = advanced_search(searched.capitalize(), employment_type, salary.split())
+        jobs = advanced_search(what.capitalize(), where.capitalize(), employment_type, salary.split())
     return render_template('jobs/index.html', advanced=advanced, search=search, jobs=jobs, current_user=current_user())
 
 def advanced():
