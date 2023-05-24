@@ -52,3 +52,14 @@ Looking back on the development process, there are valuable lessons learned and 
 - Add a search history memory to the search bar for frequent searches
 - Make a profile and attatch a resume to be "sent" to the job owner/poster when applying for a job
 - View others profiles and send friend request, private messages, job listings
+- Allow user to upload image isntead of an image link (https://www.section.io/engineering-education/image-gallery-flask-cloudinary-mongo/)
+-  Automatically be logged in as guest
+    - message to say you are currently viewing as a guest, would you like to sign up/ log in
+- Add placeholders and required to inputs where appropriate
+- Add planning/ presentation
+    - ERD diagram
+    - Hand drawings
+    - Flowcharts
+    - Mind maps
+    - Power point/ presentation
+    - WireFraming
