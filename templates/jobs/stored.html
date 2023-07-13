@@ -37,10 +37,6 @@
         <p>Date posted: {{ job['date'] }}</p>
 
         <section class="controls">
-            <form action="/jobs/{{ job['id'] }}/view">
-                <button>View</button>
-            </form>
-    
             {% if stored_type == 'applied' %}
         
             <form action="/jobs/{{ job['id'] }}/save?stored=applied" method="POST">
@@ -74,8 +70,10 @@
             </form>
     
             {% elif stored_type == 'reported' %}
-            <p>Report Message: {{ job['message'] }}</p>
-            <p>Reported on: {{ job['date'] }}</p>
+            <section>
+                <p>Report Message: {{ job['message'] }}</p>
+                <p>Reported on: {{ job['date'] }}</p>
+            </section>
     
             <form action="/jobs/{{ job['id'] }}/remove?stored=reported" method="POST">
                 <button>Remove Report</button>
