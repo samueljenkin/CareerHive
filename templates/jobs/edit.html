@@ -3,9 +3,9 @@
 {% block content %}
 <h1>Edit job listing</h1>
 {% if view_mode == 'True' %}
-<form action="/jobs/{{ job['id'] }}?view=True" method="POST">
+<form action="/jobs/{{ job['id'] }}?view=True" method="POST" class="enter-info">
 {% else %}
-<form action="/jobs/{{ job['id'] }}" method="POST">
+<form action="/jobs/{{ job['id'] }}" method="POST" class="enter-info">
 {% endif %}
     <label for="">Logo URL:</label>
     <input type="text" name="logo" value="{{ job['logo'] }}">

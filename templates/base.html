@@ -10,8 +10,11 @@
 
 <body>
     <nav>
-        <section class="logo">
-            <a href="/"><img src="/static/images/logo/CareerHive-logos_cropped.jpeg" alt=""></a>
+        <section>
+            <a href="/" class="logo">
+                <img src="/static/images/logo/logo.png" alt="" class="logo-image">
+                <h1>StingSearch</h1>
+            </a>
         </section>
 
         <section class="menu">
@@ -67,9 +70,10 @@
         </section>
     </nav>
 
-    <div class="main"></div>
-    {% block content %}
-    {% endblock %}
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 
 </html>

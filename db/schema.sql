@@ -1,6 +1,6 @@
 -- Local DB only:
-CREATE DATABASE careerhive_app;
-\c careerhive_app
+CREATE DATABASE stingsearch_app;
+\c stingsearch_app
 
 -- Run on local and web service
 CREATE TABLE jobs(
@@ -21,13 +21,12 @@ CREATE TABLE jobs(
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    first_name TEXT,
-    last_name TEXT,
+    username TEXT,
     email TEXT,
     password_digest TEXT
 );
 
-INSERT INTO users(first_name, last_name, email, password_digest) VALUES('Guest', 'Login', 'guest', 'guest');
+INSERT INTO users(username, email, password_digest) VALUES('Guest', 'guest', 'guest');
 
 CREATE TABLE saved(
     id SERIAL PRIMARY KEY,

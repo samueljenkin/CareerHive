@@ -5,11 +5,10 @@ def new():
     return render_template('users/new.html')
 
 def create():
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
+    username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
-    create_user(first_name, last_name, email, password)
+    create_user(username, email, password)
     user = find_user_by_email(email)
     session['user_id'] = user['id']
     return redirect('/')

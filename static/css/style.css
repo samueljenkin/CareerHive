@@ -24,7 +24,7 @@ nav img {
 
 /* to offset nav */
 .main {
-    margin-top: 7rem;
+    margin: 7rem 2rem 2rem;
 }
 
 .logo {
@@ -32,6 +32,17 @@ nav img {
     align-items: center;
     justify-content: center;
     padding: .5rem 0 .5rem 1rem;
+    text-decoration: none;
+}
+
+.logo img {
+  max-width: 40px;
+  margin: .5rem .5rem .5rem 0;
+}
+
+.logo h1 {
+  color: black;
+  margin: 0;
 }
 
 .jobs {
@@ -41,9 +52,21 @@ nav img {
     margin-top: 1.5rem;
 }
 
+.view .jobs {
+  grid-template-columns: 1fr;
+}
+
+.job {
+  border-radius: 10px;
+  background-color: lightgray;
+  padding: 2rem;
+}
+
 .job img {
-    max-width: 100%;
+    max-width: 236px;
     height: 10rem;
+    display: block;
+    margin: auto;
 }
 
 .overflow {
@@ -110,4 +133,19 @@ nav img {
 
 #hidden {
   display: none;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+.enter-info input, select {
+  margin-right: 100%;
+  margin-bottom: 1rem;
 }

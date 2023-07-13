@@ -3,8 +3,11 @@
 {% block content %}
 <header>
     {% if current_user %}
-    <h3>Welcome to CareerHive {{ current_user['first_name'] }}</h3>
-
+    <section class="intro">
+        <h2>Hey {{ current_user['username'] }}, Welcome to StingSearch!</h2>
+        <p>Welcome to StingSearch, your go-to app for finding your dream job! Explore our extensive job listings, click on titles for more details and take advantage of features like quick apply, saving jobs and reporting. Tailor your search for a personalised job list, access your saved jobs, or create and manage your own postings. Enjoy the seamless experience and happy job hunting!</p>
+    </section>
+    
     <section class="filters">
         <h3>Search</h3>
         <form action="/jobs/search" method="POST">
@@ -93,10 +96,6 @@
         <p>Date posted: {{ job['date'] }}</p>
 
         <section class="controls">
-            <form action="/jobs/{{ job['id'] }}/view">
-                <button>View</button>
-            </form>
-    
             {% if current_user['id'] == job['user_id'] %}
             <form action="/jobs/{{ job['id'] }}/edit" method="POST">
                 <button>Edit</button>
@@ -109,11 +108,11 @@
             {% else %}
     
             <form action="/jobs/{{ job['id'] }}/apply" method="POST">
-                <button>Apply</button>
+                <button>Quick Apply</button>
             </form>
     
             <form action="/jobs/{{ job['id'] }}/save" method="POST">
-                <button>Save</button>
+                <button>Save Job</button>
             </form>
     
             <form action="/jobs/{{ job['id'] }}/report">
@@ -126,30 +125,40 @@
 </main>
 
 {% else %}
-{% for job in jobs %}
-<section class="job">
-    <img src="{{ job['logo'] }}" alt="">
-    <h2>{{ job['title'] }}</h2>
-    <h3>${{ job['salary'] }} AUD</h3>
-    <p>Company: {{ job['company'] }}</p>
-    {% if job['employment_type'] == 'full-time' %}
-    <p>Employment type: Full-time</p>
-    {% elif job['employment_type'] == 'part-time' %}
-    <p>Employment type: Part-time</p>
-    {% elif job['employment_type'] == 'casual' %}
-    <p>Employment type: Casual</p>
-    {% elif job['employment_type'] == 'contract' %}
-    <p>Employment type: Contract</p>
-    {% elif job['employment_type'] == 'internship' %}
-    <p>Employment type: Internship</p>
-    {% else %}
-    <p>Employment type: Other</p>
-    {% endif %}
-    <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
-    <p>Contact: {{ job['contact'] }}</p>
-    <p class="overflow">Job description: {{ job['description'] }}</p>
-    <p>Date posted: {{ job['date'] }}</p>
-</section>
-{% endfor %}
+
+<header>
+    <section class="intro">
+        <h2>Welcome to StingSearch!</h2>
+        <p>Discover your dream job with StingSearch! Log in, sign up or explore as a guest to access our extensive job listings and exciting features. Get buzzing towards your career goals today!</p>
+    </section>
+</header>
+
+<main class="jobs">
+    {% for job in jobs %}
+    <section class="job">
+        <img src="{{ job['logo'] }}" alt="">
+        <h2>{{ job['title'] }}</h2>
+        <h3>${{ job['salary'] }} AUD</h3>
+        <p>Company: {{ job['company'] }}</p>
+        {% if job['employment_type'] == 'full-time' %}
+        <p>Employment type: Full-time</p>
+        {% elif job['employment_type'] == 'part-time' %}
+        <p>Employment type: Part-time</p>
+        {% elif job['employment_type'] == 'casual' %}
+        <p>Employment type: Casual</p>
+        {% elif job['employment_type'] == 'contract' %}
+        <p>Employment type: Contract</p>
+        {% elif job['employment_type'] == 'internship' %}
+        <p>Employment type: Internship</p>
+        {% else %}
+        <p>Employment type: Other</p>
+        {% endif %}
+        <p>Location: {{ job['city'] }} ({{ job['zipcode'] }}), {{ job['country'] }}</p>
+        <p>Contact: {{ job['contact'] }}</p>
+        <p class="overflow">Job description: {{ job['description'] }}</p>
+        <p>Date posted: {{ job['date'] }}</p>
+    </section>
+    {% endfor %}
+</main>
 {% endif %}
 {% endblock %}
